@@ -115,6 +115,11 @@ class Patcher(object):
         #         self.user_multi_procs != -1:
         #     # -1 being a skip value used later in this block
         #
+
+        # mdierker add. Hopefully upstream fixes eventually.
+        if self.user_multi_procs:
+            return True
+        
         p = pathlib.Path(self.data_path)
         with Lock():
             files = list(p.rglob("*chromedriver*?"))
